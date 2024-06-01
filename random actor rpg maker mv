@@ -1,0 +1,27 @@
+script 1:
+// Cek dan hapus actor dari slot 4
+if ($gameParty.members().length >= 4) {
+    const actorId4 = $gameParty.members()[3].actorId();
+    console.log("Removing actor from slot 4: " + actorId4);
+    $gameMessage.add("Removing actor from slot 4: " + $gameActors.actor(actorId4).name());
+    $gameParty.removeActor(actorId4);} else {console.log("No actor in slot 4");$gameMessage.add("No actor in slot 4");}
+// Cek dan hapus actor dari slot 3
+if ($gameParty.members().length >= 3) {
+    const actorId3 = $gameParty.members()[2].actorId();
+    console.log("Removing actor from slot 3: " + actorId3);
+    $gameMessage.add("Removing actor from slot 3: " + $gameActors.actor(actorId3).name());
+    $gameParty.removeActor(actorId3);} else {console.log("No actor in slot 3");$gameMessage.add("No actor in slot 3");}
+
+script 2:
+// Fungsi untuk mendapatkan ID aktor acak dari 3 sampai 10
+function getRandomActorId() {return Math.floor(Math.random() * 8) + 3;}
+// Tambahkan aktor acak ke slot 3
+let actorId3 = getRandomActorId();
+$gameParty.addActor(actorId3);
+console.log("Adding actor to slot 3: " + actorId3);
+$gameMessage.add("Adding actor to slot 3: " + $gameActors.actor(actorId3).name());
+// Tambahkan aktor acak ke slot 4
+let actorId4;
+do {actorId4 = getRandomActorId();} while (actorId4 === actorId3); // Pastikan aktor tidak sama dengan yang di slot 3
+$gameParty.addActor(actorId4);console.log("Adding actor to slot 4: " + actorId4);
+$gameMessage.add("Adding actor to slot 4: " + $gameActors.actor(actorId4).name());
